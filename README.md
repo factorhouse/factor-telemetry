@@ -82,9 +82,9 @@ Grafana Cloud can scrape Kpow directly over the internet. You will need to creat
 2. Navigate to **Connections** > **Add new connection**.
 3. Search for and select **Metrics Endpoint**.
 4. Click **Add new scrape job** and create three separate jobs using the following URLs:
-   * `https://demo.kpow.io/metrics/v1` (replace with your Kpow domain)
-   * `https://demo.kpow.io/offsets/v1`
-   * `https://demo.kpow.io/group-offsets/v1`
+   * `https://<your-kpow-domain>/metrics/v1` (replace with your Kpow domain)
+   * `https://<your-kpow-domain>/offsets/v1`
+   * `https://<your-kpow-domain>/group-offsets/v1`
    > ❗ **Authentication:** The endpoints should be secured, which is strictly required by the Metrics Endpoint integration. You can select either **Basic** or **Bearer (OAuth)** authentication.
 5. Click **Test Connection** and **Save Scrape Job** for each job. Grafana will immediately start polling these endpoints and storing the data in your built-in Prometheus database.
 
