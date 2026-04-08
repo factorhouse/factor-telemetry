@@ -21,7 +21,7 @@ The standard approach of routing raw Kafka JMX metrics into Prometheus often lea
 
 **These templates take a different approach.** They are built on top of Kpow, which acts as a high-fidelity metrics engine. Instead of relying on JMX sidecars, Kpow directly observes your cluster and exposes pre-calculated, actionable metrics (such as exact `group_offset_lag` and `topic_end_delta`) ready for immediate visualization.
 
-📖 **Read the architectural deep-dive: **[Beyond JMX: Supercharging Grafana Dashboards with High-Fidelity Metrics](https://factorhouse.io/articles/beyond-jmx-supercharging-grafana-dashboards-with-high-fidelity-metrics)
+📖 **Read the architectural deep-dive:** [Beyond JMX: Supercharging Grafana Dashboards with High-Fidelity Metrics](https://factorhouse.io/articles/beyond-jmx-supercharging-grafana-dashboards-with-high-fidelity-metrics)
 
 ## Dashboard Templates
 
