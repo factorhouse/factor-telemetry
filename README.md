@@ -21,7 +21,7 @@ The standard approach of routing raw Kafka JMX metrics into Prometheus often lea
 
 **These templates take a different approach.** They are built on top of Kpow, which acts as a high-fidelity metrics engine. Instead of relying on JMX sidecars, Kpow directly observes your cluster and exposes pre-calculated, actionable metrics (such as exact `group_offset_lag` and `topic_end_delta`) ready for immediate visualization.
 
-📖 **Read the architectural deep-dive:**[Beyond JMX: Supercharging Grafana Dashboards with High-Fidelity Metrics](https://factorhouse.io/articles/beyond-jmx-supercharging-grafana-dashboards-with-high-fidelity-metrics)
+📖 **Read the architectural deep-dive: **[Beyond JMX: Supercharging Grafana Dashboards with High-Fidelity Metrics](https://factorhouse.io/articles/beyond-jmx-supercharging-grafana-dashboards-with-high-fidelity-metrics)
 
 ## Dashboard Templates
 
@@ -33,7 +33,7 @@ Rather than relying on raw byte counts, it surfaces derived operational health i
 
 **🔗 Quick Links:**
 * 📥 **JSON Template:** [`kafka-environment.json`](./grafana-templates/kpow/kafka-environment.json)
-* 🌐 **Grafana Gallery:** [View and Import Dashboard](to-be-updated) *(ID: TBD)*
+* 🌐 **Grafana Gallery:** [View and Import Dashboard](https://grafana.com/grafana/dashboards/25103-kafka-environment/) *(ID: 25103)*
 
 ### 2. Kafka Topic Diagnostics
 
@@ -43,7 +43,7 @@ It tracks aggregate metrics like total topics, total replica disk usage, cluster
 
 **🔗 Quick Links:**
 * 📥 **JSON Template:** [`kafka-topic.json`](./grafana-templates/kpow/kafka-topic.json)
-* 🌐 **Grafana Gallery:** [View and Import Dashboard](to-be-updated) *(ID: TBD)*
+* 🌐 **Grafana Gallery:** [View and Import Dashboard](https://grafana.com/grafana/dashboards/25104-kafka-topic/) *(ID: 25104)*
 
 ### 3. Kafka Consumer Group Deep Dive
 
@@ -53,7 +53,7 @@ Instead of generic host metrics, it visualizes the exact state of your data cons
 
 **🔗 Quick Links:**
 * 📥 **JSON Template:** [`kafka-consumer-group.json`](./grafana-templates/kpow/kafka-consumer-group.json)
-* 🌐 **Grafana Gallery:** [View and Import Dashboard](to-be-updated) *(ID: TBD)*
+* 🌐 **Grafana Gallery:** [View and Import Dashboard](https://grafana.com/grafana/dashboards/25105-kafka-consumer-group/) *(ID: 25105)*
 
 ### 4. Kafka Connect Operations
 
@@ -63,11 +63,16 @@ It tracks aggregate summary statistics alongside individual Connector and Task s
 
 **🔗 Quick Links:**
 * 📥 **JSON Template:** [`kafka-connect.json`](./grafana-templates/kpow/kafka-connect.json)
-* 🌐 **Grafana Gallery:** [View and Import Dashboard](to-be-updated) *(ID: TBD)*
+* 🌐 **Grafana Gallery:** [View and Import Dashboard](https://grafana.com/grafana/dashboards/25106-kafka-connect/) *(ID: 25106)*
 
 ## 🚀 Getting Started with Grafana Cloud
 
 These instructions illustrate how to wire up Grafana Cloud's agentless **Metrics Endpoint** integration to scrape Kpow directly, without needing to manage a local Prometheus instance. 
+
+### 📋 Prerequisites: Enable Kpow Telemetry
+Before configuring Grafana Cloud, ensure that your Kpow instance is configured to expose its Prometheus metrics and that the endpoints are secured with Basic Authentication (which is strictly required by Grafana Cloud's agentless scraper). 
+
+🔗 **Read the official guide:** [Enabling Kpow's Prometheus Integration](https://docs.factorhouse.io/kpow/integration/prometheus/overview)
 
 ### Step 1: Configure Metrics Endpoints (Scrape Jobs)
 
@@ -77,10 +82,10 @@ Grafana Cloud can scrape Kpow directly over the internet. You will need to creat
 2. Navigate to **Connections** > **Add new connection**.
 3. Search for and select **Metrics Endpoint**.
 4. Click **Add new scrape job** and create three separate jobs using the following URLs:
-   * `https://demo.kpow.io/metrics/v1`
+   * `https://demo.kpow.io/metrics/v1` (replace with your Kpow domain)
    * `https://demo.kpow.io/offsets/v1`
    * `https://demo.kpow.io/group-offsets/v1`
-> ❗ **Authentication:** The endpoints should be secured, which is strictly required by the Metrics Endpoint integration. You can select either **Basic** or **Bearer (OAuth)** authentication.
+   > ❗ **Authentication:** The endpoints should be secured, which is strictly required by the Metrics Endpoint integration. You can select either **Basic** or **Bearer (OAuth)** authentication.
 5. Click **Test Connection** and **Save Scrape Job** for each job. Grafana will immediately start polling these endpoints and storing the data in your built-in Prometheus database.
 
 ### Step 2: Check Metrics are Flowing
